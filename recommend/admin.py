@@ -2,12 +2,7 @@
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
 
-from .models import Account, Alcohol, Question, Option, Answer
-
-
-@admin.register(Account)
-class UserAdmin(admin.ModelAdmin):
-    pass
+from .models import Alcohol, Question, Option, Answer
 
 
 @admin.register(Alcohol)

@@ -5,25 +5,6 @@ from collections import OrderedDict
 from django_postgres_extensions.models.fields import ArrayField
 
 
-class Account(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    user_name = models.CharField(max_length=20)
-    mailaddress = models.TextField()
-    login_pw = models.CharField(max_length=20)
-
-    def to_dict(self):
-        add = (("user_id", self.user_id),
-               ("user_name", self.user_name),
-               ("mailaddress", self.mailaddress),
-               ("login_pw", self.login_pw))
-
-        return OrderedDict(add)
-
-    class Meta:
-        managed = False
-        db_table = 'account'
-
-
 class Alcohol(models.Model):
     alcohol_id = models.AutoField(primary_key=True)
     type_name = models.TextField()
@@ -86,6 +67,13 @@ class Answer(models.Model):
     alcohol_id = models.IntegerField()
     learning_data = ArrayField(models.FloatField(), null=True, blank=True)
 
+    def to_dict(self):
+        add = (("answer_id", self.answer_id),
+               ("alcohol_id", self.alcohol_id),
+               ("learning_data", self.learning_data))
+
+        return OrderedDict(add)
+
     class Meta:
         managed = False
         db_table = 'answer'
@@ -97,6 +85,15 @@ class History(models.Model):
     alco_name = models.CharField(max_length=20)
     data_joined = models.DateTimeField()
     review = models.IntegerField(blank=True, null=True)
+
+    def to_dict(self):
+        add = (("history_id", self.history_id),
+               ("user_id", self.user_id),
+               ("alco_name", self.alco_name),
+               ("data_joined", self.data_joined),
+               ("review", self.review))
+
+        return OrderedDict(add)
 
     class Meta:
         managed = False

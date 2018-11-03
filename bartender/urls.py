@@ -18,11 +18,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
 from recommend.urls import router as recommend_router
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api2/', include(recommend_router.urls)),
     url(r'api/', include('recommend.urls')),
+    url(r'^login/', obtain_jwt_token),
+    url(r'user/', include('accounts.urls')),
 ]

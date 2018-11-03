@@ -2,14 +2,14 @@
 # -*- coding: UTF-8 -*-
 from rest_framework import serializers
 
-from .models import Account, Alcohol, Question, Option, Answer, History
+from .models import Alcohol, Question, Option, Answer, History
 
-
+'''
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('user_name', 'mailaddress', 'login_pw')
-
+'''
 
 class AlcoholSerializer(serializers.ModelSerializer):
     class Meta:
