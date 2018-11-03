@@ -15,7 +15,7 @@ import threading
 import requests
 import time
 
-from dj_static import Cling
+# from dj_static import Cling
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 
@@ -29,7 +29,7 @@ def awake():
     while True:
         try:
             print("Start Awaking")
-            requests.get("http://hogefuga.herokuapp.com/")
+            requests.get("http://nameless-headland-71842.herokuapp.com/")
             print("End")
         except:
             print("error")
