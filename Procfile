@@ -1,1 +1,1 @@
-web: gunicorn bartender.wsgi --log-file -
+web: gunicorn bartender.wsgi
