@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api2/', include(recommend_router.urls)),
     url(r'api/', include('recommend.urls')),
-    url(r'^login/', obtain_jwt_token),
+    url(r'^user/login/', obtain_jwt_token),
     url(r'user/', include('accounts.urls')),
 ]
