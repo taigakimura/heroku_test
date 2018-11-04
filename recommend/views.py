@@ -10,7 +10,6 @@ import pandas
 import numpy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import MeCab
 from collections import OrderedDict
 from rest_framework import permissions
 from rest_framework.views import APIView
