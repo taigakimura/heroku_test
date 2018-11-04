@@ -14,6 +14,7 @@ class Alcohol(models.Model):
 
     def to_dict(self):
         add = (("alcohol_id", self.alcohol_id),
+               ("type_name", self.type_name),
                ("alco_name", self.alco_name),
                ("image", self.image),
                ("detail", self.detail))
