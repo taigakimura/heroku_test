@@ -188,13 +188,11 @@ class RecommendView(APIView):
         if r.count() > 1:
             res_json = json.dumps([x.to_dict() for x in r], ensure_ascii=False)
             res = json.loads(res_json, object_pairs_hook=OrderedDict)
-            res_json = json.dumps(res[random.randrange(r.count())], ensure_ascii=False)
+            ans_id = res[random.randrange(r.count())]['alcohol_id']  # 回答結果のalcohol_id
         else:
             res_json = json.dumps([x.to_dict() for x in r], ensure_ascii=False)
-
-        res = json.loads(res_json, object_pairs_hook=OrderedDict)
-
-        ans_id = res[0]['alcohol_id']  # 回答結果のalcohol_id
+            res = json.loads(res_json, object_pairs_hook=OrderedDict)
+            ans_id = res[0]['alcohol_id']  # 回答結果のalcohol_id
 
         '''
         dataset = pandas.read_csv("recommend/cocktail_data.csv")
