@@ -9,7 +9,6 @@ import pandas
 import numpy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import MeCab
 from collections import OrderedDict
 import requests
 from datetime import date, datetime
