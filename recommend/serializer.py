@@ -11,6 +11,7 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = ('user_name', 'mailaddress', 'login_pw')
 '''
 
+
 class AlcoholSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alcohol
@@ -38,4 +39,4 @@ class AnswerSerializer(serializers.ModelSerializer):
 class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
-        fields = ('history_id', 'user_id', 'alco_name', 'review')
+        fields = ('history_id', 'user_id', 'alco_name', 'data_joined', 'review')
