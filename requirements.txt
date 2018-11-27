@@ -15,3 +15,5 @@ gunicorn==19.9.0
 dj-database-url==0.5.0
 whitenoise==3.3.1
 requests==2.20.0
+scikit-surprise==1.0.6
+schedule==0.5.0

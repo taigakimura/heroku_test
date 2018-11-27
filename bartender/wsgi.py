@@ -27,7 +27,9 @@ application = DjangoWhiteNoise(application)
 
 
 def awake():
+    schedule.every().day.at("10:00").do(collaborative_filtering.collaborative_filtering, )
     while True:
+        schedule.run_pending()
         try:
             print("Start Awaking")
             requests.get("https://nameless-headland-71842.herokuapp.com/")
