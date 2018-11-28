@@ -278,7 +278,7 @@ class CollaborativeFilteringView(APIView):
     def get(self, request):
         user_id = request.user.user_id
         alcohol_num = Alcohol.objects.latest('alcohol_id').alcohol_id
-        data_cf = pandas.read_csv("recommend/answer_cf.csv", encoding='utf-8')
+        data_cf = pandas.read_csv("/recommend/answer_cf.csv", encoding='utf-8')
         data_cf = data_cf.set_index('user_id')
 
         predicted_value = data_cf.at[user_id, 'predicted_value']
