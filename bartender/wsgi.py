@@ -29,7 +29,7 @@ application = DjangoWhiteNoise(application)
 from recommend import collaborative_filtering
 
 def awake():
-    schedule.every().day.at("19:20").do(collaborative_filtering.collaborative_filtering, )
+    schedule.every().day.at("19:40").do(collaborative_filtering.collaborative_filtering, )
     while True:
         schedule.run_pending()
         try:
