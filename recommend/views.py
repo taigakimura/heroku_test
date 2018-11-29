@@ -18,6 +18,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import permissions, status, viewsets
 from rest_framework.views import APIView
+from bartender.settings import BASE_DIR
 
 
 class FirstQuestionView(APIView):
@@ -278,7 +279,7 @@ class CollaborativeFilteringView(APIView):
     def get(self, request):
         user_id = request.user.user_id
         alcohol_num = Alcohol.objects.latest('alcohol_id').alcohol_id
-        data_cf = pandas.read_csv("/recommend/answer_cf.csv", encoding='utf-8')
+        data_cf = pandas.read_csv(BASE_DIR + "/recommend/answer_cf.csv", encoding='utf-8')
         data_cf = data_cf.set_index('user_id')
 
         predicted_value = data_cf.at[user_id, 'predicted_value']
@@ -301,7 +302,7 @@ class CollaborativeFilteringView(APIView):
     def post(self, request):
         user_id = request.data["user_id"]
         alcohol_num = Alcohol.objects.latest('alcohol_id').alcohol_id
-        data_cf = pandas.read_csv("recommend/answer_cf.csv", encoding='utf-8')
+        data_cf = pandas.read_csv(BASE_DIR + "/recommend/answer_cf.csv", encoding='utf-8')
         data_cf = data_cf.set_index('user_id')
 
         predicted_value = data_cf.at[user_id, 'predicted_value']

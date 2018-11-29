@@ -18,6 +18,8 @@ import time
 # from dj_static import Cling
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
+import schedule
+from recommend import collaborative_filtering
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bartender.settings')
 
@@ -27,7 +29,7 @@ application = DjangoWhiteNoise(application)
 
 
 def awake():
-    schedule.every().day.at("10:00").do(collaborative_filtering.collaborative_filtering, )
+    schedule.every().day.at("16:30").do(collaborative_filtering.collaborative_filtering, )
     while True:
         schedule.run_pending()
         try:
@@ -37,6 +39,7 @@ def awake():
         except:
             print("error")
         time.sleep(300)
+
 
 t = threading.Thread(target=awake)
 t.start()
