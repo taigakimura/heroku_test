@@ -20,7 +20,7 @@ def collaborative_filtering():
                     history.review]
             writer.writerow(row)
 
-    alco = pandas.read_csv(BASE_DIR + "/alcohol_cf.csv", encoding='utf-8')
+    alco = pandas.read_csv("/app/recommend/alcohol_cf.csv", encoding='utf-8')
     alco = alco.set_index('alco_name')
 
     data = pandas.read_csv(BASE_DIR + "/dataset_cf.csv", encoding='utf-8').fillna(0)
