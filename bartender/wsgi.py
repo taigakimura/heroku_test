@@ -19,7 +19,6 @@ import time
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
 import schedule
-from recommend import collaborative_filtering
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bartender.settings')
 
@@ -27,6 +26,7 @@ application = get_wsgi_application()
 # application = Cling(get_wsgi_application())
 application = DjangoWhiteNoise(application)
 
+from recommend import collaborative_filtering
 
 def awake():
     schedule.every().day.at("16:30").do(collaborative_filtering.collaborative_filtering, )
