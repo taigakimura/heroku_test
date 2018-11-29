@@ -7,7 +7,7 @@ from bartender.settings import BASE_DIR
 
 def collaborative_filtering():
     history_list = History.objects.all()
-    with open(BASE_DIR + "/recommend/dataset_cf.csv", 'w', encoding='utf-8', newline='') as csv_file:
+    with open(BASE_DIR + "/dataset_cf.csv", 'w', encoding='utf-8', newline='') as csv_file:
         header = ['history_id', 'user_id', 'alco_name', 'data_joined', 'review']
         writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         writer.writerow(header)
@@ -20,10 +20,10 @@ def collaborative_filtering():
                     history.review]
             writer.writerow(row)
 
-    alco = pandas.read_csv(BASE_DIR + "/recommend/alcohol_cf.csv", encoding='utf-8')
+    alco = pandas.read_csv(BASE_DIR + "/alcohol_cf.csv", encoding='utf-8')
     alco = alco.set_index('alco_name')
 
-    data = pandas.read_csv(BASE_DIR + "/recommend/dataset_cf.csv", encoding='utf-8').fillna(0)
+    data = pandas.read_csv(BASE_DIR + "/dataset_cf.csv", encoding='utf-8').fillna(0)
     data = data.drop('history_id', axis=1)
     data = data.drop('data_joined', axis=1)
     alcohol_id_list = []
@@ -33,10 +33,10 @@ def collaborative_filtering():
     data = data.drop('alco_name', axis=1)
     data['alcohol_id'] = alcohol_id_list
     data = data.loc[:, ["user_id", "alcohol_id", "review"]]
-    data.to_csv(BASE_DIR + "/recommend/dataset_cf.score", sep=' ', header=None, index=False, encoding='utf-8')
+    data.to_csv(BASE_DIR + "/dataset_cf.score", sep=' ', header=None, index=False, encoding='utf-8')
 
     reader = Reader(line_format='user item rating', sep=' ')
-    dataset = Dataset.load_from_file(BASE_DIR + "/recommend/dataset_cf.score", reader=reader)
+    dataset = Dataset.load_from_file(BASE_DIR + "/dataset_cf.score", reader=reader)
     trainset = dataset.build_full_trainset()
     sim_options = {
         'name': 'pearson',  # 類似度を計算する方法を指定（ cosine,msd,pearson,pearson_baseline ）
@@ -51,7 +51,7 @@ def collaborative_filtering():
     alcohol_num = Alcohol.objects.latest('alcohol_id').alcohol_id
     user_num = History.objects.latest('user_id').user_id
 
-    with open(BASE_DIR + "/recommend/answer_cf.csv", 'w', encoding='utf-8', newline='') as csv_file:
+    with open(BASE_DIR + "/answer_cf.csv", 'w', encoding='utf-8', newline='') as csv_file:
         header = ['user_id', 'alcohol_id', 'predicted_value']
         writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         writer.writerow(header)
